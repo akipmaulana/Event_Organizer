@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Event</title>
+        <title>Edit Event</title>
         <link rel="stylesheet" type="text/css" href="css/jquery.ui.all.css" />
         <link rel="stylesheet" type="text/css" href="css/demos.css" />
         <link rel="stylesheet" type="text/css" href="css/jquery.ui.datepicker.css" />
@@ -63,21 +63,37 @@
         </script>
     </head>
     <body>
+        <% 
+            model.Events_model event;
+            int event_id;
+            String name="";
+            String begin="";
+            String end="";
+            String desc=""; 
+            int quota =0;
+            event= model.Events_model.class.cast(request.getAttribute("event"));
+            event_id = event.getId_event();
+            name = event.getNama_event();
+            begin = event.getTgl_dimulai();
+            end = event.getTgl_diselesi();
+            desc = event.getDeskripsi();
+            quota = event.getJml_peserta();
+        %>
         <header><h1>Form Event</h1></header>
         <section>
-            <form action="../Events_ctrl?action=ins&user_id=1" method="post" onsubmit="return validasi();" name="formevent">
+            <form action="Events_ctrl?action=update&event_id=<%= event_id %>" method="post" onsubmit="return validasi();" name="formevent">
                 <table>
                     <tr>
                         <td>Nama Event</td>
                         <td>:</td>
-                        <td><input type="text" name="name_event" /></td>
+                        <td><input type="text" name="name_event" value="<%= name %>"/></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Tanggal Mulai</td>
                         <td>:</td>
                         <td>
-                            <input type="text" id="tanggal" name="begin" />
+                            <input type="text" id="tanggal" name="begin" value="<%= begin %>"/>
                         </td>
                         <td></td>
                     </tr>
@@ -85,7 +101,7 @@
                         <td>Tanggal Akhir</td>
                         <td>:</td>
                         <td>
-                            <input type="text" id="tanggal_end" name="end" />
+                            <input type="text" id="tanggal_end" name="end" value="<%= end %>"/>
                         </td>
                         <td></td>
                     </tr>
@@ -93,14 +109,14 @@
                         <td>Quota</td>
                         <td>:</td>
                         <td>
-                            <input type="number" name="quota" id="q" />
+                            <input type="number" name="quota" id="q" value="<%= quota %>"/>
                         </td>
                         <td></td>
                     </tr>
                     <tr>
                         <td>Description</td>
                         <td>:</td>
-                        <td><textarea cols="20" rows="5" name="desc"></textarea></td>
+                        <td><textarea cols="20" rows="5" name="desc"><%= desc %></textarea></td>
                         <td></td>
                     </tr>
                     <tr>

@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <% response.sendRedirect("index_2.jsp"); %>
+        <% response.sendRedirect("Events_ctrl"); %>
     </body>
 </html>

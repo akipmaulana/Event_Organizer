@@ -35,7 +35,7 @@ public class Database {
         try
         {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_event", "root", "");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tubes_progjar", "root", "");
             
         }
         catch (Throwable ex)
